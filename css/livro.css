@@ -1,0 +1,484 @@
+/* ============================================================
+   MAGUEZI — Estilos do Livro e do Leitor
+   (carregado DEPOIS de estilos.css, só nas páginas de livros)
+   Parte A — a página do livro
+   Parte B — o leitor (temas Madrugada · Palha · Noite)
+   ============================================================ */
+
+/* ================= PARTE A — PÁGINA DO LIVRO ================= */
+
+/* ---------- Hero do livro (faixa nocturna) ---------- */
+.livro-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 5rem 0 4.5rem;
+  text-align: center;
+  color: #fff;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -10%, rgba(217,149,48,0.28), transparent 60%),
+    linear-gradient(180deg, var(--noite-funda), var(--noite));
+}
+.livro-hero .livro-numero { color: var(--luz); }
+.livro-hero h1 {
+  font-family: var(--titulos);
+  font-weight: 600;
+  font-size: clamp(2rem, 5.5vw, 3.2rem);
+  line-height: 1.15;
+  margin: 0.4rem 0 0.8rem;
+}
+.livro-hero__linha {
+  font-style: italic;
+  color: rgba(246,240,225,0.82);
+  max-width: 34rem;
+  margin: 0 auto 2rem;
+}
+.livro-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+.livro-acoes .botao { margin-top: 0; }
+.livro-acoes small {
+  font-size: 0.72em;
+  text-transform: none;
+  letter-spacing: 0.05em;
+  opacity: 0.85;
+}
+.livro-meta {
+  margin-top: 1.6rem;
+  font-family: var(--ui);
+  font-size: 0.76rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(246,240,225,0.55);
+}
+
+/* Botão fantasma (secundário, sobre fundo escuro) */
+.botao--fantasma {
+  background: transparent;
+  color: var(--madrugada);
+  border: 1px solid rgba(246,240,225,0.5);
+  box-shadow: none;
+}
+.botao--fantasma:hover {
+  border-color: var(--luz);
+  color: var(--luz);
+  box-shadow: none;
+}
+
+/* ---------- Títulos de secção da página do livro ---------- */
+.livro-seccao-titulo {
+  font-family: var(--titulos);
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.75rem;
+}
+.livro-seccao-titulo::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(217,149,48,0.55), transparent);
+}
+.livro-seccao-intro {
+  font-style: italic;
+  color: rgba(43,33,24,0.65);
+  max-width: 40rem;
+  margin-bottom: 2rem;
+}
+
+/* ---------- Sinopse ---------- */
+.sinopse p { font-size: 1.12rem; max-width: 42rem; }
+.sinopse-temas { margin-top: 1.5rem; font-style: italic; }
+
+/* ---------- As Camadas (os três níveis) ---------- */
+.camada {
+  background: #fff;
+  border: 1px solid rgba(43,33,24,0.08);
+  border-radius: 12px;
+  padding: 0 1.5rem;
+  margin-bottom: 1rem;
+}
+.camada summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 1.25rem 0;
+  font-family: var(--ui);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.75rem;
+  align-items: baseline;
+}
+.camada summary::-webkit-details-marker { display: none; }
+.camada summary::before {
+  content: "▸";
+  color: var(--luz);
+  margin-right: 0.35rem;
+  transition: transform 0.25s ease;
+}
+.camada[open] summary::before { transform: rotate(90deg); }
+.camada summary strong { font-size: 1.02rem; }
+.camada summary em { color: rgba(43,33,24,0.55); font-size: 0.92rem; }
+.camada-corpo { padding: 0 0 1.5rem 1.75rem; max-width: 44rem; }
+
+/* Perguntas à volta da fogueira */
+.perguntas { list-style: none; margin: 0.75rem 0; }
+.perguntas li {
+  position: relative;
+  padding-left: 1.6rem;
+  font-style: italic;
+  margin-bottom: 0.6rem;
+}
+.perguntas li::before {
+  content: "❧";
+  position: absolute;
+  left: 0;
+  color: var(--luz);
+  font-style: normal;
+}
+
+/* ---------- Fichas (personagens e lugares) ---------- */
+.fichas {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+.ficha {
+  background: #fff;
+  border: 1px solid rgba(43,33,24,0.08);
+  border-radius: 14px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+a.ficha { text-decoration: none; color: inherit; display: block; }
+a.ficha:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(22,33,62,0.1);
+  border-color: var(--luz);
+}
+.ficha-simbolo { font-size: 1.8rem; display: block; margin-bottom: 0.75rem; }
+.ficha h3 { font-family: var(--titulos); font-size: 1.25rem; margin-bottom: 0.35rem; }
+.ficha p { font-size: 0.95rem; color: rgba(43,33,24,0.75); }
+
+/* ---------- Nota dos autores ---------- */
+.nota-autores {
+  background: #fff;
+  border-left: 4px solid var(--terra);
+  border-radius: 0 14px 14px 0;
+  padding: 1.75rem 1.75rem 1.5rem;
+  max-width: 46rem;
+}
+.nota-autores .assinatura {
+  margin-top: 1.25rem;
+  font-family: var(--ui);
+  font-size: 0.85rem;
+  color: var(--terra);
+}
+
+/* ---------- Ouvir (player em espera) ---------- */
+.player-placeholder {
+  background: #fff;
+  border: 1px dashed rgba(43,33,24,0.3);
+  border-radius: 14px;
+  padding: 2.25rem 1.5rem;
+  text-align: center;
+  max-width: 42rem;
+}
+.player-placeholder .simbolo {
+  font-size: 2rem;
+  display: block;
+  margin-bottom: 0.5rem;
+  opacity: 0.65;
+}
+.player-placeholder a { color: var(--palha-verde); }
+
+/* ---------- Estado da edição impressa ---------- */
+.estado-selo {
+  display: inline-block;
+  font-family: var(--ui);
+  font-size: 0.76rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--luz);
+  border: 1px solid rgba(217,149,48,0.5);
+  border-radius: 999px;
+  padding: 0.45rem 1.2rem;
+  margin-bottom: 1.25rem;
+}
+.estado-texto { max-width: 42rem; margin-inline: auto; }
+.estado-texto a { color: var(--luz); }
+
+/* ---------- Navegação entre livros ---------- */
+.nav-livros {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem 2rem;
+  margin-top: 3rem;
+  font-family: var(--ui);
+  font-size: 0.9rem;
+}
+.nav-livros a { color: var(--palha-verde); text-decoration: none; }
+.nav-livros a:hover { text-decoration: underline; }
+.nav-livros .em-breve { color: rgba(43,33,24,0.45); font-style: italic; }
+
+/* ---------- Cartões "abre em breve" (prateleira) ---------- */
+.porta--em-breve { opacity: 0.55; cursor: default; }
+.porta--em-breve:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: rgba(43,33,24,0.08);
+}
+.porta--em-breve .livro-accoes { color: var(--terra); }
+
+/* ================= PARTE B — O LEITOR ================= */
+
+/*
+  O leitor tem temas próprios, independentes do resto do site.
+  O JS troca o atributo data-tema no <body>; o CSS faz o resto.
+*/
+body.leitor {
+  --leitor-fundo:  var(--madrugada);
+  --leitor-texto:  var(--tinta);
+  --leitor-suave:  rgba(43,33,24,0.6);
+  --leitor-cartao: #ffffff;
+  --leitor-borda:  rgba(43,33,24,0.12);
+  background: var(--leitor-fundo);
+  color: var(--leitor-texto);
+  transition: background-color 0.45s ease, color 0.45s ease;
+}
+body.leitor[data-tema="palha"] {
+  --leitor-fundo:  #EFE4C9;   /* palha seca ao sol da tarde */
+  --leitor-texto:  #453721;
+  --leitor-suave:  rgba(69,55,33,0.6);
+  --leitor-cartao: #F8F1DC;
+  --leitor-borda:  rgba(69,55,33,0.18);
+}
+body.leitor[data-tema="noite"] {
+  --leitor-fundo:  #0D1428;   /* a noite em que a Pedra acende */
+  --leitor-texto:  #E7DEC9;
+  --leitor-suave:  rgba(231,222,201,0.55);
+  --leitor-cartao: #16213E;
+  --leitor-borda:  rgba(231,222,201,0.15);
+}
+
+/* ---------- Barra de progresso (topo) ---------- */
+.progresso {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  z-index: 30;
+  pointer-events: none;
+}
+.progresso__barra {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--terra), var(--luz));
+}
+
+/* ---------- Barra de ferramentas (fixa ao topo) ---------- */
+.leitor-barra {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: var(--leitor-fundo);
+  border-bottom: 1px solid var(--leitor-borda);
+}
+.leitor-barra .conteudo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  padding-block: 0.6rem;
+}
+.leitor-volta {
+  font-family: var(--ui);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--leitor-suave);
+}
+.leitor-volta:hover { color: var(--luz); }
+.leitor-controlos { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; }
+.leitor-controlos button {
+  font-family: var(--ui);
+  font-size: 0.75rem;
+  background: transparent;
+  color: var(--leitor-texto);
+  border: 1px solid var(--leitor-borda);
+  border-radius: 8px;
+  padding: 0.35rem 0.7rem;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+.leitor-controlos button:hover { border-color: var(--luz); color: var(--luz); }
+.leitor-controlos button.activo {
+  background: var(--luz);
+  border-color: var(--luz);
+  color: #0D1428;
+}
+.leitor-controlos button:disabled { opacity: 0.35; cursor: default; }
+.leitor-controlos .separador {
+  width: 1px;
+  height: 1.2rem;
+  background: var(--leitor-borda);
+  margin-inline: 0.35rem;
+}
+
+/* ---------- Cabeça do leitor ---------- */
+.leitor-cabeca { text-align: center; padding: 4rem 1.25rem 1.5rem; }
+.leitor-cabeca .livro-numero { color: var(--luz); }
+.leitor-cabeca h1 {
+  font-family: var(--titulos);
+  font-weight: 600;
+  font-size: clamp(1.9rem, 5vw, 2.8rem);
+  margin: 0.4rem 0 0.75rem;
+}
+.leitor-cabeca .meta {
+  font-family: var(--ui);
+  font-size: 0.76rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--leitor-suave);
+}
+.leitor-ornamento {
+  color: var(--luz);
+  letter-spacing: 0.8em;
+  text-align: center;
+  margin: 1.5rem 0;
+  user-select: none;
+}
+
+/* ---------- O corpo do texto ---------- */
+.texto {
+  max-width: 38rem;          /* a medida ideal de leitura */
+  margin-inline: auto;
+  padding: 0.5rem 1.25rem 4rem;
+  font-size: 1.15rem;        /* o JS ajusta este valor (A− / A+) */
+  line-height: 1.9;
+}
+.texto p {
+  margin-bottom: 1.15em;
+  text-align: justify;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
+/* Letra capitular — a primeira letra da crónica */
+.texto .abertura::first-letter {
+  font-family: var(--titulos);
+  font-weight: 600;
+  float: left;
+  font-size: 3.3em;
+  line-height: 0.78;
+  padding: 0.06em 0.14em 0 0;
+  color: var(--luz);
+}
+
+/* Falas (diálogo) */
+.texto .fala {
+  padding-left: 1.1rem;
+  border-left: 2px solid rgba(217,149,48,0.45);
+}
+
+/* Divisores de cena */
+.texto .divisor {
+  text-align: center;
+  color: var(--luz);
+  letter-spacing: 0.8em;
+  margin: 2.6rem 0 2.2rem;
+  user-select: none;
+}
+
+/*
+  Protecção simbólica: impede a selecção/copiar do texto no leitor.
+  (A protecção real — registo e marcadores de água — chega na Sessão 6.)
+*/
+.texto { -webkit-user-select: none; user-select: none; }
+
+/* ---------- Fim da leitura ---------- */
+.leitor-fim {
+  border-top: 1px solid var(--leitor-borda);
+  padding: 2.5rem 1.25rem 4rem;
+  text-align: center;
+}
+.leitor-fim .folha-semana {
+  background: var(--leitor-cartao);
+  box-shadow: none;
+}
+.leitor-fim .nav-livros { justify-content: center; }
+.leitor-fim .nav-livros a { color: var(--luz); }
+.nota-partilha {
+  margin-top: 2.5rem;
+  font-family: var(--ui);
+  font-size: 0.8rem;
+  font-style: italic;
+  color: var(--leitor-suave);
+}
+
+/* ---------- Impressão (se alguém imprimir a crónica) ---------- */
+@media print {
+  .leitor-barra, .progresso, .nav-livros, .leitor-fim { display: none; }
+  body.leitor { background: #fff; color: #000; }
+  .texto { font-size: 11pt; max-width: none; user-select: text; }
+}
+
+/* ============================================================
+   Extensões literárias (Sessão 3)
+   ============================================================ */
+
+/* Epígrafe — a frase que abre a crónica */
+.texto .epigrafe {
+  margin: 0 auto 2.75rem;
+  max-width: 28rem;
+  text-align: center;
+  font-style: italic;
+  font-size: 0.95em;
+  color: var(--leitor-suave);
+}
+.texto .epigrafe cite {
+  display: block;
+  margin-top: 0.8rem;
+  font-style: normal;
+  font-family: var(--ui);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--luz);
+}
+
+/* Versos — oráculos, juramentos e leis antigas */
+.texto .versos {
+  margin: 2.25rem auto;
+  padding: 1.5rem 1.6rem;
+  max-width: 30rem;
+  border-left: 3px solid rgba(217,149,48,0.55);
+  background: rgba(217,149,48,0.07);
+  font-style: italic;
+  line-height: 1.85;
+  text-align: left;
+  font-size: 0.95em;
+}
+
+/* Títulos de secção dentro da crónica */
+.texto h2 {
+  font-family: var(--titulos);
+  font-weight: 600;
+  font-size: 1.4em;
+  text-align: center;
+  margin: 3.25rem 0 1.5rem;
+  color: var(--luz);
+}
+.texto h2::before,
+.texto h2::after {
+  content: "✦";
+  font-size: 0.55em;
+  vertical-align: middle;
+  margin: 0 0.9rem;
+  opacity: 0.7;
+}
