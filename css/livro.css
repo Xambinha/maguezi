@@ -421,6 +421,9 @@ body.leitor[data-tema="noite"] {
   color: var(--leitor-suave);
 }
 
+.nota-partilha + .nota-partilha {
+  margin-top: 0.9rem;   /* parágrafos seguintes: juntos, como estrofes */
+}
 /* ---------- Impressão (se alguém imprimir a crónica) ---------- */
 @media print {
   .leitor-barra, .progresso, .nav-livros, .leitor-fim { display: none; }

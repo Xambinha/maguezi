@@ -1,0 +1,232 @@
+/* ============================================================
+   MAGUEZI — A Caminho do Papel (Sessão 5)
+   A campanha de edição impressa do Volume 1
+   ============================================================ */
+
+/* ---------- Hero: a noite à espera da madrugada ---------- */
+.edicao-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 6rem 0 5.5rem;
+  text-align: center;
+  color: #fff;
+  background:
+    radial-gradient(ellipse 90% 45% at 50% 118%, rgba(217,149,48,0.5), transparent 65%),
+    linear-gradient(180deg, var(--noite-funda) 25%, var(--noite));
+}
+.edicao-hero__olho {
+  font-family: var(--ui);
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-size: 0.75rem;
+  color: var(--luz);
+}
+.edicao-hero h1 {
+  font-family: var(--titulos);
+  font-weight: 600;
+  font-size: clamp(2rem, 5.5vw, 3.2rem);
+  margin: 0.5rem 0 0.9rem;
+}
+.edicao-hero__linha {
+  font-style: italic;
+  color: rgba(246,240,225,0.85);
+  max-width: 36rem;
+  margin: 0 auto;
+}
+
+/* ---------- A Nota sobre a Edição ---------- */
+.nota { max-width: 40rem; margin: 0 auto; text-align: center; }
+.nota p {
+  font-family: var(--titulos);
+  font-style: italic;
+  font-size: clamp(1.15rem, 2.6vw, 1.4rem);
+  line-height: 1.65;
+  margin-bottom: 1.5rem;
+}
+.nota .nota__assinatura {
+  font-family: var(--ui);
+  font-style: normal;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--terra);
+  margin-top: 2rem;
+}
+
+/* ---------- O estado da árvore (barra + números) ---------- */
+.campanha-caixa {
+  max-width: 46rem;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid rgba(43,33,24,0.08);
+  border-radius: 16px;
+  padding: 2.25rem 2rem;
+  box-shadow: 0 14px 36px rgba(22,33,62,0.08);
+}
+.campanha-barra-grande {
+  height: 18px;
+  background: rgba(43,33,24,0.08);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.campanha-barra-grande > div {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--terra), var(--luz));
+  border-radius: 999px;
+  transition: width 1.2s ease;
+}
+.numeros {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+  margin-top: 1.75rem;
+  text-align: center;
+}
+.numero__valor {
+  display: block;
+  font-family: var(--titulos);
+  font-weight: 600;
+  font-size: 1.55rem;
+  color: var(--noite);
+}
+.numero__rotulo {
+  display: block;
+  font-family: var(--ui);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(43,33,24,0.55);
+  margin-top: 0.2rem;
+}
+.campanha-nota-rodape {
+  text-align: center;
+  font-family: var(--ui);
+  font-size: 0.8rem;
+  color: rgba(43,33,24,0.55);
+  margin-top: 1.4rem;
+}
+
+/* ---------- Níveis de apoio ---------- */
+.nivel__preco {
+  display: block;
+  font-family: var(--titulos);
+  font-weight: 600;
+  font-size: 1.7rem;
+  color: var(--luz);
+  margin: 0.5rem 0 0.75rem;
+}
+.nivel ul {
+  list-style: none;
+  text-align: left;
+  margin-top: 0.75rem;
+}
+.nivel li {
+  position: relative;
+  padding-left: 1.3rem;
+  margin-bottom: 0.45rem;
+  font-size: 0.92rem;
+  color: rgba(43,33,24,0.75);
+}
+.nivel li::before {
+  content: "❧";
+  position: absolute;
+  left: 0;
+  color: var(--palha-verde);
+}
+
+/* ---------- Formas de pagamento ---------- */
+.pagamentos {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  max-width: 52rem;
+  margin-inline: auto;
+}
+.pagamento {
+  background: #fff;
+  border: 1px solid rgba(43,33,24,0.08);
+  border-radius: 14px;
+  padding: 1.6rem 1.4rem;
+  text-align: center;
+}
+.pagamento__icone { font-size: 1.8rem; }
+.pagamento h3 {
+  font-family: var(--titulos);
+  font-size: 1.2rem;
+  margin: 0.5rem 0 0.4rem;
+}
+.pagamento p { font-size: 0.92rem; color: rgba(43,33,24,0.75); }
+.pagamento .dados-pagamento {
+  display: inline-block;
+  margin-top: 0.85rem;
+  font-family: var(--ui);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  font-size: 0.9rem;
+  color: var(--noite);
+  background: rgba(95,127,53,0.12);
+  border-radius: 8px;
+  padding: 0.5rem 0.85rem;
+}
+
+/* ---------- A caixa do comprovativo ---------- */
+.comprovativo {
+  max-width: 44rem;
+  margin: 0 auto;
+  background: var(--noite);
+  color: var(--madrugada);
+  border-radius: 16px;
+  padding: 2.25rem 2rem;
+  text-align: center;
+}
+.comprovativo p { max-width: 34rem; margin-inline: auto; }
+.comprovativo a {
+  color: var(--luz);
+  font-family: var(--ui);
+  text-decoration: none;
+}
+.comprovativo a:hover { text-decoration: underline; }
+
+/* ---------- Transparência ---------- */
+.transparencia {
+  list-style: none;
+  max-width: 40rem;
+  margin-inline: auto;
+}
+.transparencia li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid rgba(43,33,24,0.08);
+}
+.transparencia li:last-child { border-bottom: none; }
+.transparencia .pct {
+  font-family: var(--ui);
+  font-weight: 600;
+  color: var(--terra);
+  white-space: nowrap;
+}
+
+/* ---------- FAQ ---------- */
+.faq-item {
+  background: #fff;
+  border: 1px solid rgba(43,33,24,0.08);
+  border-radius: 12px;
+  padding: 0 1.5rem;
+  margin-bottom: 1rem;
+  max-width: 46rem;
+  margin-inline: auto;
+}
+.faq-item summary {
+  cursor: pointer;
+  list-style: none;
+  padding: 1.15rem 0;
+  font-family: var(--ui);
+  font-weight: 600;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::before { content: "▸ "; color: var(--luz); }
+.faq-item[open] summary::before { content: "▾ "; }
+.faq-item p { padding-bottom: 1.25rem; }

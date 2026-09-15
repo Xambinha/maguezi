@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Chave da Cidade — Maguezi</title>
+  <meta name="description" content="Recebe a chave da Cidade de Luz: registo gratuito dos leitores de Maguezi." />
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=EB+Garamond:ital@0;1&family=Source+Sans+3:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/estilos.css" />
+  <link rel="stylesheet" href="css/chaves.css" />
+  <script src="js/supabase-config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="pagina-interna">
+
+  <header class="cabecalho cabecalho--solido">
+    <div class="conteudo">
+      <a class="marca" href="index.html">✦ Maguezi</a>
+      <nav aria-label="Navegação principal">
+        <ul class="menu">
+          <li><a href="universo/index.html">O Universo</a></li>
+          <li><a href="biblioteca/index.html">Biblioteca</a></li>
+          <li><a href="saberes/index.html">Saberes</a></li>
+          <li><a href="edicao/index.html">A Caminho do Papel</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="trilho-hero" style="background:
+      radial-gradient(ellipse 80% 60% at 50% -10%, rgba(217,149,48,0.28), transparent 60%),
+      linear-gradient(180deg, var(--noite-funda), var(--noite));
+      position:relative; overflow:hidden; padding:5.5rem 0 4.5rem; text-align:center; color:#fff;">
+    <div class="nyeleti" aria-hidden="true"></div>
+    <div class="conteudo">
+      <p style="font-family:var(--ui); text-transform:uppercase; letter-spacing:0.3em; font-size:0.75rem; color:var(--luz);">A Porta dos Leitores</p>
+      <h1 style="font-family:var(--titulos); font-weight:600; font-size:clamp(2rem,5.5vw,3rem); margin:0.5rem 0 0.9rem;">A Chave da Cidade</h1>
+      <p style="font-style:italic; color:rgba(246,240,225,0.82); max-width:34rem; margin:0 auto;">
+        Ler e ouvir continuam abertos a todos. A chave é só para quem quer
+        pertencer — e ser o primeiro a saber quando algo nasce.
+      </p>
+    </div>
+  </section>
+
+  <main class="seccao">
+    <div class="conteudo">
+
+      <!-- Ainda não configurado -->
+      <div class="chave-caixa" id="estado-config" style="display:none">
+        <p style="text-align:center">
+          <strong>As chaves ainda estão a ser forjadas.</strong>
+        </p>
+        <p style="font-size:0.92rem; color:rgba(43,33,24,0.7); margin-top:0.75rem">
+          A guarda da cidade está quase pronta. Volta brevemente — ou fala com
+          os guardiões:
+          <a href="mailto:associacaomaguezi@gmail.com" style="color:var(--palha-verde)">associacaomaguezi@gmail.com</a>
+        </p>
+      </div>
+
+      <!-- Formulários -->
+      <div class="chave-caixa" id="painel-forms">
+
+        <div class="chave-tabs" role="tablist">
+          <button type="button" class="chave-tab activo" id="tab-entrar">Já tenho a chave</button>
+          <button type="button" class="chave-tab" id="tab-criar">Receber a chave</button>
+        </div>
+
+        <div class="chave-aviso" id="aviso" role="alert"></div>
+
+        <!-- ENTRAR -->
+        <form id="form-entrar" novalidate>
+          <div class="chave-campo">
+            <label for="entrar-email">Email</label>
+            <input type="email" id="entrar-email" autocomplete="email" required />
+          </div>
+          <div class="chave-campo">
+            <label for="entrar-senha">Senha</label>
+            <input type="password" id="entrar-senha" autocomplete="current-password" required />
+          </div>
+          <p style="text-align:center; margin-top:1.4rem">
+            <button type="submit" class="botao" style="margin-top:0">Abrir a porta</button>
+          </p>
+        </form>
+
+        <!-- CRIAR -->
+        <form id="form-criar" class="escondido" novalidate>
+          <div class="chave-campo">
+            <label for="criar-nome">O teu nome na cidade</label>
+            <input type="text" id="criar-nome" autocomplete="name" required />
+          </div>
+          <div class="chave-campo">
+            <label for="criar-email">Email</label>
+            <input type="email" id="criar-email" autocomplete="email" required />
+          </div>
+          <div class="chave-campo">
+            <label for="criar-senha">Senha (mínimo 6 caracteres)</label>
+            <input type="password" id="criar-senha" autocomplete="new-password" minlength="6" required />
+          </div>
+          <p style="text-align:center; margin-top:1.4rem">
+            <button type="submit" class="botao" style="margin-top:0">Receber a chave da Cidade</button>
+          </p>
+        </form>
+
+      </div>
+
+      <!-- Logado -->
+      <div class="chave-caixa chave-sucesso" id="painel-logado" style="display:none">
+        <p class="saudacao" id="saudacao">A cidade reconheceu-te.</p>
+        <p>
+          A tua chave está guardada neste dispositivo. Quando nascer uma nova
+          voz na Biblioteca, serás dos primeiros a saber.
+        </p>
+        <p>
+          <a href="biblioteca/index.html" class="botao botao--escuro" style="margin-top:1rem">Voltar à Biblioteca</a>
+          <button type="button" class="botao botao--fantasma" id="botao-sair" style="margin-top:1rem">Sair</button>
+        </p>
+      </div>
+
+      <p class="chave-nota">
+        Guardamos apenas o teu nome e o teu email — para nada mais servem
+        senão para te chamar quando a Cidade tiver novidades. Nada se
+        partilha com terceiros.
+      </p>
+
+    </div>
+  </main>
+
+  <footer class="rodape">
+    <div class="conteudo">
+      <span class="marca">✦ Maguezi</span>
+      <p>Crónicas da Cidade de Luz · Osvaldo Chamba &amp; Dória Macie</p>
+      <p class="rodape-frase">“Aquele que tiver o coração puro e buscar o bem, encontrará o caminho.”</p>
+    </div>
+  </footer>
+
+  <script>
+  (function () {
+    "use strict";
+
+    var configurado =
+      SUPABASE_URL.indexOf("EDITA") === -1 &&
+      SUPABASE_ANON.indexOf("EDITA") === -1;
+
+    var cliente = configurado ? supabase.createClient(SUPABASE_URL, SUPABASE_ANON) : null;
+
+    var config = document.getElementById("estado-config");
+    var forms  = document.getElementById("painel-forms");
+    var logado = document.getElementById("painel-logado");
+    var aviso  = document.getElementById("aviso");
+
+    /* ---------- estados ---------- */
+    function mostrarConfig() {
+      config.style.display = "block";
+      forms.style.display = "none";
+      logado.style.display = "none";
+    }
+    function mostrarForms() {
+      config.style.display = "none";
+      forms.style.display = "block";
+      logado.style.display = "none";
+    }
+    function mostrarLogado(nome) {
+      config.style.display = "none";
+      forms.style.display = "none";
+      logado.style.display = "block";
+      document.getElementById("saudacao").textContent =
+        "A cidade reconheceu-te, " + nome + ".";
+    }
+
+    function erro(mensagem) {
+      aviso.textContent = mensagem;
+      aviso.classList.add("visivel");
+    }
+    function limparErro() {
+      aviso.textContent = "";
+      aviso.classList.remove("visivel");
+    }
+
+    function traduzirErro(e) {
+      var m = (e && e.message) || "";
+      if (m.indexOf("Invalid login credentials") > -1)
+        return "A chave não abriu esta porta. Verifica o email e a senha.";
+      if (m.indexOf("already registered") > -1)
+        return "Este email já tem chave. Tenta entrar.";
+      if (m.indexOf("at least 6 characters") > -1)
+        return "A senha precisa de pelo menos 6 caracteres.";
+      if (m.indexOf("rate limit") > -1 || m.indexOf("too many") > -1)
+        return "Demasiadas tentativas. A cidade guarda as portas — espera um pouco.";
+      if (m.indexOf("Failed to fetch") > -1)
+        return "Não houve resposta da cidade. Verifica a tua ligação à internet.";
+      return "Algo se perdeu no caminho. Tenta outra vez.";
+    }
+
+    /* ---------- sessão ---------- */
+    function verificarSessao() {
+      if (!cliente) { mostrarConfig(); return; }
+      cliente.auth.getSession().then(function (res) {
+        var sessao = res && res.data && res.data.session;
+        if (sessao) {
+          var nome = (sessao.user.user_metadata && sessao.user.user_metadata.nome) || "leitor";
+          mostrarLogado(nome);
+        } else {
+          mostrarForms();
+        }
+      });
+    }
+
+    cliente && cliente.auth.onAuthStateChange(function (evento) {
+      if (evento === "SIGNED_OUT") { mostrarForms(); }
+    });
+
+    /* ---------- tabs ---------- */
+    var tabEntrar = document.getElementById("tab-entrar");
+    var tabCriar  = document.getElementById("tab-criar");
+    var formEntrar = document.getElementById("form-entrar");
+    var formCriar  = document.getElementById("form-criar");
+
+    tabEntrar.addEventListener("click", function () {
+      tabEntrar.classList.add("activo");
+      tabCriar.classList.remove("activo");
+      formEntrar.classList.remove("escondido");
+      formCriar.classList.add("escondido");
+      limparErro();
+    });
+    tabCriar.addEventListener("click", function () {
+      tabCriar.classList.add("activo");
+      tabEntrar.classList.remove("activo");
+      formCriar.classList.remove("escondido");
+      formEntrar.classList.add("escondido");
+      limparErro();
+    });
+
+    /* ---------- entrar ---------- */
+    formEntrar.addEventListener("submit", function (e) {
+      e.preventDefault();
+      limparErro();
+      var email = document.getElementById("entrar-email").value.trim();
+      var senha = document.getElementById("entrar-senha").value;
+      cliente.auth.signInWithPassword({ email: email, password: senha })
+        .then(function (res) {
+          if (res.error) { erro(traduzirErro(res.error)); return; }
+          var nome = (res.data.user.user_metadata && res.data.user.user_metadata.nome) || "leitor";
+          mostrarLogado(nome);
+        })
+        .catch(function (e2) { erro(traduzirErro(e2)); });
+    });
+
+    /* ---------- criar ---------- */
+    formCriar.addEventListener("submit", function (e) {
+      e.preventDefault();
+      limparErro();
+      var nome  = document.getElementById("criar-nome").value.trim();
+      var email = document.getElementById("criar-email").value.trim();
+      var senha = document.getElementById("criar-senha").value;
+      if (nome.length < 2) { erro("Diz-nos como te chamamos na cidade."); return; }
+      cliente.auth.signUp({
+        email: email,
+        password: senha,
+        options: { data: { nome: nome } }
+      }).then(function (res) {
+        if (res.error) { erro(traduzirErro(res.error)); return; }
+        mostrarLogado(nome);
+      }).catch(function (e2) { erro(traduzirErro(e2)); });
+    });
+
+    /* ---------- sair ---------- */
+    document.getElementById("botao-sair").addEventListener("click", function () {
+      cliente.auth.signOut();
+      formEntrar.reset();
+      formCriar.reset();
+    });
+
+    verificarSessao();
+  })();
+  </script>
+
+</body>
+</html>

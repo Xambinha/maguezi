@@ -1,0 +1,133 @@
+/* ============================================================
+   MAGUEZI — O Portador de Vozes (player de áudio)
+   Nasce na página quando o ficheiro existe em audio/
+   ============================================================ */
+
+.player-maguezi { max-width: 42rem; margin-inline: auto; }
+
+.pm-caixa {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+  background: #fff;
+  border: 1px solid rgba(43,33,24,0.08);
+  border-radius: 16px;
+  padding: 1.4rem 1.5rem;
+  box-shadow: 0 10px 28px rgba(22,33,62,0.07);
+}
+
+/* ---------- O botão redondo ---------- */
+.pm-botao {
+  flex: none;
+  width: 58px; height: 58px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  font-size: 1.35rem;
+  line-height: 1;
+  color: var(--noite-funda);
+  background: radial-gradient(circle at 32% 30%, #F0B85A, var(--luz));
+  box-shadow: 0 6px 18px rgba(217,149,48,0.45);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.pm-botao:hover {
+  transform: scale(1.07);
+  box-shadow: 0 9px 24px rgba(217,149,48,0.55);
+}
+
+/* ---------- A informação ---------- */
+.pm-info { flex: 1; min-width: 0; }
+.pm-numero {
+  display: block;
+  font-family: var(--ui);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--terra);
+  margin-bottom: 0.15rem;
+}
+.pm-titulo {
+  display: block;
+  font-family: var(--titulos);
+  font-size: 1.25rem;
+  margin-bottom: 0.65rem;
+}
+
+/* ---------- A barra de escuta ---------- */
+.pm-barra {
+  height: 10px;
+  background: rgba(43,33,24,0.1);
+  border-radius: 999px;
+  cursor: pointer;
+  position: relative;
+}
+.pm-barra:focus-visible {
+  outline: 2px solid var(--luz);
+  outline-offset: 3px;
+}
+.pm-progresso {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--terra), var(--luz));
+  border-radius: 999px;
+  position: relative;
+}
+.pm-progresso::after {
+  content: "";
+  position: absolute;
+  right: -6px; top: 50%;
+  transform: translateY(-50%);
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--luz);
+  box-shadow: 0 0 8px rgba(217,149,48,0.6);
+}
+
+/* ---------- Tempos e velocidade ---------- */
+.pm-tempos {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  margin-top: 0.55rem;
+  font-family: var(--ui);
+  font-size: 0.78rem;
+  color: rgba(43,33,24,0.6);
+}
+.pm-tempos .pm-total { margin-left: auto; }
+.pm-velocidade {
+  font-family: var(--ui);
+  font-size: 0.72rem;
+  background: transparent;
+  border: 1px solid rgba(43,33,24,0.2);
+  border-radius: 999px;
+  padding: 0.15rem 0.65rem;
+  cursor: pointer;
+  color: rgba(43,33,24,0.75);
+}
+.pm-velocidade:hover { border-color: var(--luz); color: var(--luz); }
+
+/* ---------- Ainda não há voz ---------- */
+.pm-caixa--em-breve {
+  border: 1px dashed rgba(43,33,24,0.3);
+  box-shadow: none;
+  background: #fff;
+}
+.pm-caixa--em-breve .pm-simbolo {
+  font-size: 2rem;
+  opacity: 0.6;
+  flex: none;
+}
+.pm-texto {
+  font-size: 0.95rem;
+  color: rgba(43,33,24,0.75);
+  margin-bottom: 0.4rem;
+}
+.pm-texto:last-child { margin-bottom: 0; }
+.pm-texto a { color: var(--palha-verde); }
+
+/* ---------- Ecrãs pequenos ---------- */
+@media (max-width: 480px) {
+  .pm-caixa { flex-direction: column; text-align: center; }
+  .pm-tempos { justify-content: center; }
+  .pm-tempos .pm-total { margin-left: 0; }
+}
