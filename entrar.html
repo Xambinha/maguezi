@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>A Chave da Cidade — Maguezi</title>
-  <meta name="description" content="Recebe a chave da Cidade de Luz: registo gratuito dos leitores de Maguezi." />
+  <meta name="description" content="Recebe a chave da Cidade de Luz: registo gratuito dos leitores de Maguezi. A cidade é aberta a todos — a chave é para quem quer pertencer." />
   <link rel="icon" href="img/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -38,9 +38,9 @@
     <div class="conteudo">
       <p style="font-family:var(--ui); text-transform:uppercase; letter-spacing:0.3em; font-size:0.75rem; color:var(--luz);">A Porta dos Leitores</p>
       <h1 style="font-family:var(--titulos); font-weight:600; font-size:clamp(2rem,5.5vw,3rem); margin:0.5rem 0 0.9rem;">A Chave da Cidade</h1>
-      <p style="font-style:italic; color:rgba(246,240,225,0.82); max-width:34rem; margin:0 auto;">
-        Ler e ouvir continuam abertos a todos. A chave é só para quem quer
-        pertencer — e ser o primeiro a saber quando algo nasce.
+      <p style="font-style:italic; color:rgba(246,240,225,0.82); max-width:36rem; margin:0 auto;">
+        A cidade é aberta a todos — para sempre. A chave não tranca portas:
+        é para quem quer pertencer, e ser o primeiro a saber quando algo nascer.
       </p>
     </div>
   </section>
@@ -109,10 +109,13 @@
       <!-- Logado -->
       <div class="chave-caixa chave-sucesso" id="painel-logado" style="display:none">
         <p class="saudacao" id="saudacao">A cidade reconheceu-te.</p>
-        <p>
-          A tua chave está guardada neste dispositivo. Quando nascer uma nova
-          voz na Biblioteca, serás dos primeiros a saber.
-        </p>
+        <p>A tua chave está guardada neste dispositivo. O que ela te dá:</p>
+        <ul class="chave-beneficios">
+          <li>✦ O teu nome no menu, em todas as salas da cidade</li>
+          <li>🌬️ Serás dos primeiros a saber quando nascer uma voz nova</li>
+          <li>🎧 Acesso antecipado ao que está para nascer: áudio, Volume 2</li>
+        </ul>
+        <p>E ler e ouvir continuam abertos a todos — como sempre foram.</p>
         <p>
           <a href="biblioteca/index.html" class="botao botao--escuro" style="margin-top:1rem">Voltar à Biblioteca</a>
           <button type="button" class="botao botao--fantasma" id="botao-sair" style="margin-top:1rem">Sair</button>
@@ -163,6 +166,8 @@
       logado.style.display = "none";
     }
     function mostrarLogado(nome) {
+      /* grava o nome para o menu de TODAS as paginas o usar (chave-viva.js) */
+      try { localStorage.setItem("maguezi.nome", nome); } catch (e) {}
       config.style.display = "none";
       forms.style.display = "none";
       logado.style.display = "block";
@@ -209,7 +214,11 @@
     }
 
     cliente && cliente.auth.onAuthStateChange(function (evento) {
-      if (evento === "SIGNED_OUT") { mostrarForms(); }
+      if (evento === "SIGNED_OUT") {
+        /* apaga o nome: o menu de todas as paginas volta a "A Chave" */
+        try { localStorage.removeItem("maguezi.nome"); } catch (e) {}
+        mostrarForms();
+      }
     });
 
     /* ---------- tabs ---------- */
@@ -277,5 +286,6 @@
   })();
   </script>
 
+  <script defer src="js/chave-viva.js"></script>
 </body>
 </html>

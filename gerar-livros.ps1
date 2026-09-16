@@ -378,6 +378,7 @@ function Fichas($lista, $comLink) {
     </div>
   </footer>
 
+  <script defer src="js/chave-viva.js"></script>
 </body>
 </html>
 '@
@@ -475,6 +476,7 @@ function Fichas($lista, $comLink) {
     </div>
   </footer>
 
+  <script defer src="js/chave-viva.js"></script>
 </body>
 </html>
 '@

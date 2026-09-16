@@ -94,3 +94,17 @@
 }
 
 .escondido { display: none !important; }
+
+/* ---------- Benefícios da chave (Modelo A) ---------- */
+.chave-beneficios {
+  list-style: none;
+  text-align: left;
+  max-width: 24rem;
+  margin: 1.1rem auto;
+}
+.chave-beneficios li {
+  padding-left: 0.2rem;
+  margin-bottom: 0.55rem;
+  font-size: 0.95rem;
+  color: rgba(43,33,24,0.8);
+}
