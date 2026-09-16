@@ -8,7 +8,7 @@
    ============================================================ */
 
 var ALVO       = 150000;  // EDITA: meta da campanha, em meticais
-var ANGARIADO = 0;        // EDITA: total angariado até hoje
+var ANGARIADO = 2500;    // era 0 — o valor de teste
 var GUARDIOES  = 0;       // EDITA: número de apoiantes
 
 (function () {
