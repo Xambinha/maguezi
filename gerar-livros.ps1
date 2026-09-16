@@ -358,6 +358,12 @@ function Fichas($lista, $comLink) {
         <blockquote>@@FOLHA@@</blockquote>
         <cite>@@FOLHACITE@@</cite>
       </div>
+      <p style="text-align:center; margin-top:2rem">
+        <a class="botao botao--escuro" target="_blank" rel="noopener"
+           href="https://www.facebook.com/sharer/sharer.php?u=SUBSTITUI-POR-O-TEU-DOMINIO/biblioteca/@@SLUG@@.html">
+          Partilhar esta folha no Facebook
+        </a>
+      </p>
       <nav class="nav-livros" aria-label="Navegação entre livros">
         @@PREV@@
         @@NEXT@@
