@@ -249,7 +249,7 @@ function Fichas($lista, $comLink) {
           <li><a href="../universo/index.html">O Universo</a></li>
           <li><a href="index.html">Biblioteca</a></li>
           <li><a href="../saberes/index.html">Saberes</a></li>
-          <li><a href="../edicao/index.html">A Caminho do Papel</a></li>
+          <li><a href="../edicao/index.html"> A Caminho do Papel</a></li>
         </ul>
       </nav>
     </div>
