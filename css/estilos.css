@@ -106,9 +106,11 @@ a { color: inherit; }
   .menu-rotulo { display: block; }
 
   /* por defeito, o NAV (o irmão da alavanca) está recolhido */
+  /* por defeito, o NAV (o irmão da alavanca) está recolhido */
   .cabecalho .conteudo > nav {
     display: none;
     flex-basis: 100%;            /* ocupa a linha inteira ao abrir */
+
   }
 
   /* o menu, dentro do nav aberto, desce em coluna */
@@ -129,6 +131,12 @@ a { color: inherit; }
      o input ligado ~ o nav que vem depois dele */
   .cabecalho .menu-burger:checked ~ nav {
     display: block;
+  }
+
+  /* e para a raiz não ficar transparente por trás do ☰ aberto: */
+  .cabecalho .menu-burger:checked ~ nav + *,
+  .cabecalho:has(.menu-burger:checked) {
+    background: var(--noite-funda);
   }
 
   /* feedback do toque: o ☰ acende quando o menu está aberto */
