@@ -295,7 +295,7 @@ function Fichas($lista, $comLink) {
         <div class="camada-corpo"><p>@@CAMADA2@@</p></div>
       </details>
       <details class="camada">
-        <summary><strong>🌙 A Sabedoria</strong><em>para quem quiser aprofundar</em></summary>
+        <summary><strong><svg class="simbolo-svg" aria-hidden="true"><use href="../img/simbolos.svg#nyeleti"></use></svg> A Sabedoria</strong><em>para quem quiser aprofundar</em></summary>
         <div class="camada-corpo">
           <p>Perguntas para levar contigo, à volta da fogueira:</p>
           <ul class="perguntas">@@CAMADA3@@</ul>
