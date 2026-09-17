@@ -32,6 +32,14 @@ body {
 img { max-width: 100%; display: block; }
 a { color: inherit; }
 
+/* ---------- Os simbolos sagrados (SVG) ---------- */
+.simbolo-svg {
+  width: 1em;                 /* herda o tamanho do contexto — como uma letra! */
+  height: 1em;
+  display: inline-block;
+  vertical-align: -0.12em;    /* alinha com o texto, como uma emoji faria */
+}
+
 .conteudo {
   max-width: 1080px;
   margin-inline: auto;
