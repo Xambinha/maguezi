@@ -64,6 +64,7 @@ a { color: inherit; }
   text-transform: uppercase;
   text-decoration: none;
 }
+/* ---------- Menu (desktop + mobile) ---------- */
 .menu {
   display: flex;
   flex-wrap: wrap;
@@ -79,6 +80,50 @@ a { color: inherit; }
   color: rgba(255,255,255,0.85);
 }
 .menu a:hover { color: var(--luz); }
+
+/* A alavanca invisivel: so existe para ser ligada/desligada */
+.menu-burger {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* O botao ☰: escondido no desktop, visivel no telemovel */
+.menu-rotulo {
+  display: none;
+  cursor: pointer;
+  color: #fff;
+  font-size: 1.6rem;
+  line-height: 1;
+  padding: 0.3rem 0.2rem;
+  order: 3;                       /* fica no fim da linha, apos o menu */
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ---------- TELEMOVEL (ate 760px) ---------- */
+@media (max-width: 760px) {
+  .menu-rotulo { display: block; }
+
+  /* por defeito, o menu esta recolhido */
+  .menu {
+    display: none;
+    flex-basis: 100%;
+    flex-direction: column;
+    gap: 0;
+    padding-bottom: 1rem;
+  }
+  .menu li { border-top: 1px solid rgba(246,240,225,0.12); }
+  .menu a {
+    display: block;
+    padding: 0.8rem 0.2rem;
+    font-size: 0.95rem;
+  }
+
+  /* e quando a alavanca e ligada... o menu desdobra-se */
+  .menu-burger:checked ~ .menu {
+    display: flex;
+  }
+}
 
 /* ---------- O Chamado (hero nocturno) ---------- */
 .hero {
