@@ -64,6 +64,7 @@ a { color: inherit; }
   text-transform: uppercase;
   text-decoration: none;
 }
+
 /* ---------- Menu (desktop + mobile) ---------- */
 .menu {
   display: flex;
@@ -81,50 +82,60 @@ a { color: inherit; }
 }
 .menu a:hover { color: var(--luz); }
 
-/* A alavanca invisivel: so existe para ser ligada/desligada */
+/* A alavanca invisível: só existe para ser ligada/desligada */
 .menu-burger {
   position: absolute;
   opacity: 0;
   pointer-events: none;
 }
 
-/* O botao ☰: escondido no desktop, visivel no telemovel */
+/* O botão ☰: escondido no desktop, visível no telemóvel */
 .menu-rotulo {
   display: none;
   cursor: pointer;
   color: #fff;
   font-size: 1.6rem;
   line-height: 1;
-  padding: 0.3rem 0.2rem;
-  order: 3;                       /* fica no fim da linha, apos o menu */
+  padding: 0.45rem 0.6rem;       /* alvo de toque generoso */
+  margin-left: auto;             /* encosta à direita */
   -webkit-tap-highlight-color: transparent;
 }
 
-/* ---------- TELEMOVEL (ate 760px) ---------- */
+/* ---------- TELEMÓVEL (até 760px) ---------- */
 @media (max-width: 760px) {
   .menu-rotulo { display: block; }
 
-  /* por defeito, o menu esta recolhido */
-  .menu {
+  /* por defeito, o NAV (o irmão da alavanca) está recolhido */
+  .cabecalho .conteudo > nav {
     display: none;
-    flex-basis: 100%;
+    flex-basis: 100%;            /* ocupa a linha inteira ao abrir */
+  }
+
+  /* o menu, dentro do nav aberto, desce em coluna */
+  .menu {
     flex-direction: column;
     gap: 0;
-    padding-bottom: 1rem;
+    padding: 0.25rem 0 0.75rem;
   }
   .menu li { border-top: 1px solid rgba(246,240,225,0.12); }
+  .menu li:first-child { border-top: none; }
   .menu a {
     display: block;
     padding: 0.8rem 0.2rem;
     font-size: 0.95rem;
   }
 
-  /* e quando a alavanca e ligada... o menu desdobra-se */
-  .menu-burger:checked ~ .menu {
-    display: flex;
+  /* E QUANDO A ALAVANCA É LIGADA... o irmão certo abre:
+     o input ligado ~ o nav que vem depois dele */
+  .cabecalho .menu-burger:checked ~ nav {
+    display: block;
+  }
+
+  /* feedback do toque: o ☰ acende quando o menu está aberto */
+  .menu-burger:checked ~ .menu-rotulo {
+    color: var(--luz);
   }
 }
-
 /* ---------- O Chamado (hero nocturno) ---------- */
 .hero {
   position: relative;
