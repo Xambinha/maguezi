@@ -230,3 +230,182 @@
 .faq-item summary::before { content: "▸ "; color: var(--luz); }
 .faq-item[open] summary::before { content: "▾ "; }
 .faq-item p { padding-bottom: 1.25rem; }
+
+/* ============================================================
+   A Página de Apoiantes — o santuário das luzes
+   Cada nível é um altar; cada nome, uma estrela.
+   ============================================================ */
+
+/* ---------- A grelha geral ---------- */
+.apoiantes-grid {
+  max-width: 42rem;
+  margin: 0 auto;
+  display: grid;
+  gap: 1.5rem;
+}
+
+/* ---------- Cada nível (o altar) ---------- */
+.apoiantes-nivel {
+  background: #fff;
+  border: 1px solid rgba(43,33,24,0.08);
+  border-radius: 16px;
+  padding: 1.6rem 1.75rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* O brilho suave no topo do cartão — a luz a nascer */
+.apoiantes-nivel::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, rgba(217,149,48,0.55), transparent);
+  opacity: 0.5;
+}
+
+/* Os dois níveis superiores ganham a moldura dourada */
+.apoiantes-nivel--luz-viva,
+.apoiantes-nivel--pedra {
+  border-color: rgba(217,149,48,0.35);
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(217,149,48,0.07), transparent 70%),
+    #fff;
+}
+
+.apoiantes-nivel--luz-viva {
+  border-color: rgba(217,149,48,0.5);
+}
+
+.apoiantes-nivel--luz-viva::before {
+  background: linear-gradient(90deg, transparent, var(--luz), transparent);
+  opacity: 0.8;
+  height: 4px;
+}
+
+/* ---------- O cabeçalho do nível ---------- */
+.apoiantes-nivel__cabeca {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1.1rem;
+}
+
+.apoiantes-nivel__cabeca .simbolo-svg {
+  width: 1.7rem;
+  height: 1.7rem;
+  flex: none;
+}
+
+.apoiantes-nivel__cabeca h3 {
+  font-family: var(--titulos);
+  font-size: 1.35rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.apoiantes-nivel__cabeca .contagem {
+  font-family: var(--ui);
+  font-size: 0.72rem;
+  color: var(--terra);
+  letter-spacing: 0.12em;
+  margin-left: auto;
+  white-space: nowrap;
+  background: rgba(122,74,43,0.08);
+  border-radius: 999px;
+  padding: 0.25rem 0.75rem;
+}
+
+/* ---------- Os nomes (as estrelas) ---------- */
+.apoiantes-nomes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 1.4rem;
+  list-style: none;
+}
+
+.apoiantes-nomes li {
+  font-family: var(--titulos);
+  font-size: 1.12rem;
+  font-style: italic;
+  color: var(--tinta);
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+}
+
+/* O ✦ antes de cada nome — cada pessoa é uma pequena estrela */
+.apoiantes-nomes li:not(.apoiantes-vazio)::before {
+  content: "✦";
+  font-size: 0.55em;
+  color: var(--luz);
+  font-style: normal;
+  position: relative;
+  top: -0.25em;
+}
+
+/* ---------- O estado vazio (o assento à espera) ---------- */
+.apoiantes-vazio {
+  font-style: italic;
+  color: rgba(43,33,24,0.5);
+  font-size: 0.92rem;
+  border: 1px dashed rgba(43,33,24,0.2);
+  border-radius: 10px;
+  padding: 0.65rem 1rem;
+  width: 100%;
+  background: rgba(43,33,24,0.02);
+}
+
+.apoiantes-vazio::before { display: none; }  /* sem ✦ nos vazios */
+
+/* ---------- O convite ---------- */
+.apoiantes-convite {
+  max-width: 38rem;
+  margin: 2rem auto 0;
+  text-align: center;
+  background: var(--noite);
+  color: var(--madrugada);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+}
+
+.apoiantes-convite h3 {
+  font-family: var(--titulos);
+  font-size: 1.45rem;
+  margin-bottom: 0.75rem;
+  color: #fff;
+}
+
+.apoiantes-convite p {
+  font-size: 0.95rem;
+  color: rgba(246,240,225,0.8);
+  margin-bottom: 1.25rem;
+}
+
+.apoiantes-convite p:last-child {
+  margin-bottom: 0;
+  font-size: 0.8rem;
+  font-style: italic;
+  color: rgba(246,240,225,0.5);
+}
+
+/* ---------- Navegação de volta ---------- */
+.edicao-nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem 2rem;
+  margin-top: 2.5rem;
+  font-family: var(--ui);
+  font-size: 0.85rem;
+}
+.edicao-nav a { color: var(--terra); text-decoration: none; }
+.edicao-nav a:hover { text-decoration: underline; }
+
+/* ---------- Telemóvel: nomes em duas colunas ---------- */
+@media (max-width: 600px) {
+  .apoiantes-nivel { padding: 1.25rem 1.25rem 1.1rem; }
+  .apoiantes-nomes { gap: 0.5rem 1rem; }
+  .apoiantes-nivel__cabeca .contagem { font-size: 0.65rem; }
+}

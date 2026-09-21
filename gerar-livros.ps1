@@ -97,6 +97,8 @@
             '← Livro III — Yehlisa e a Mbira Mágica</a>')
     next = ('<span class="em-breve">Livro V — O Conto de ' +
             'Tsembissa · abre em breve</span>')
+
+    fraseRodape = "Tudo está vivo. Tudo fala. E preciso apenas aprender a escutar."
   },
 
   # ================ LIVRO V ================
@@ -375,6 +377,13 @@ function Fichas($lista, $comLink) {
     <div class="conteudo">
       <span class="marca">✦ Maguezi</span>
       <p>Crónicas da Cidade de Luz · Osvaldo Chamba &amp; Dória Macie</p>
+      <p>Associação Maguezi — Maputo, Moçambique</p>
+      <div class="redes">
+        <a href="#">Facebook</a>
+        <a href="#">YouTube</a>
+        <a href="mailto:associacaomaguezi@gmail.com">E-mail</a>
+      </div>
+      <p class="rodape-frase">@@FRASE-RODAPE@@</p>
     </div>
   </footer>
 
@@ -509,6 +518,7 @@ foreach ($l in $livros) {
   $mae = $mae.Replace("@@NOTA@@", $l.nota)
   $mae = $mae.Replace("@@PREV@@", $l.prev)
   $mae = $mae.Replace("@@NEXT@@", $l.next)
+  $mae = $mae.Replace("@@FRASE-RODAPE@@", $l.fraseRodape)
 
   $ler = $TPL_LER
   $ler = $ler.Replace("@@NUMERO@@", $l.numero)
