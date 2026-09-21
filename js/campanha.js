@@ -7,9 +7,9 @@
    actualizam-se sozinhas.
    ============================================================ */
 
-var ALVO       = 25000;  // Etapa Piloto: 30 exemplares
-var ANGARIADO = 1800;    // ← o que a Arca te disse
-var GUARDIOES  = 1;      // ← o que a Arca te disse
+var ALVO       = 25000;  // Etapa Piloto: 30 exemplares (impressão + edição)
+var ANGARIADO = 0;
+var GUARDIOES  = 0;
 
 (function () {
   "use strict";
