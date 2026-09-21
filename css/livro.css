@@ -485,3 +485,11 @@ body.leitor[data-tema="noite"] {
   margin: 0 0.9rem;
   opacity: 0.7;
 }
+
+/* ---------- O simbolo do hero (o brasao do livro) ---------- */
+.livro-hero .simbolo {
+  display: inline-block;
+  font-size: 3rem;         /* o indice: os SVG herdam este tamanho */
+  margin-bottom: 0.75rem;
+  line-height: 1;
+}
