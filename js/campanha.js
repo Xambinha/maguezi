@@ -7,9 +7,9 @@
    actualizam-se sozinhas.
    ============================================================ */
 
-var ALVO       = 150000;  // EDITA: meta da campanha, em meticais
-var ANGARIADO = 2500;    // era 0 — o valor de teste
-var GUARDIOES  = 0;       // EDITA: número de apoiantes
+var ALVO       = 25000;  // Etapa Piloto: 30 exemplares (impressão + edição)
+var ANGARIADO = 0;
+var GUARDIOES  = 0;
 
 (function () {
   "use strict";
