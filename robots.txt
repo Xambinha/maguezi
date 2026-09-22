@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://xambinha.github.io/maguezi/sitemap.xml
