@@ -7,9 +7,9 @@
    actualizam-se sozinhas.
    ============================================================ */
 
-var ALVO       = 25000;  // Etapa Piloto: 30 exemplares (impressão + edição)
-var ANGARIADO = 0;
-var GUARDIOES  = 0;
+var ALVO       = 100;   // EDITA: quantas pessoas justificam a edicao piloto
+var ACESAS     = 0;     // EDITA: quantas pessoas já responderam
+var GUARDIOES  = 0;     // (mantém para a home usar o mesmo campo)
 
 (function () {
   "use strict";
