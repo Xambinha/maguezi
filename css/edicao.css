@@ -1,6 +1,7 @@
 /* ============================================================
-   MAGUEZI — A Caminho do Papel (Sessão 5)
+   MAGUEZI — A Caminho do Papel
    A campanha de edição impressa do Volume 1
+   Cada secção tem a sua própria luz.
    ============================================================ */
 
 /* ---------- Hero: a noite à espera da madrugada ---------- */
@@ -30,37 +31,63 @@
 .edicao-hero__linha {
   font-style: italic;
   color: rgba(246,240,225,0.85);
-  max-width: 36rem;
+  max-width: 38rem;
   margin: 0 auto;
+  line-height: 1.8;
 }
 
-/* ---------- A Nota sobre a Edição ---------- */
-.nota { max-width: 40rem; margin: 0 auto; text-align: center; }
+/* ---------- A Nota sobre a Edição (a carta) ---------- */
+.nota {
+  max-width: 40rem;
+  margin: 0 auto;
+  text-align: center;
+  background: #fff;
+  border: 1px solid rgba(43,33,24,0.08);
+  border-top: 4px solid var(--luz);
+  border-radius: 16px;
+  padding: 2.75rem 2.25rem 2.25rem;
+  box-shadow: 0 14px 36px rgba(22,33,62,0.08);
+  position: relative;
+}
+.nota::before {
+  content: "✦";
+  position: absolute;
+  top: -1.1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.4rem;
+  color: var(--luz);
+  background: var(--madrugada);
+  padding: 0 0.75rem;
+  text-shadow: 0 0 18px rgba(217,149,48,0.6);
+}
 .nota p {
   font-family: var(--titulos);
   font-style: italic;
-  font-size: clamp(1.15rem, 2.6vw, 1.4rem);
+  font-size: clamp(1.1rem, 2.4vw, 1.3rem);
   line-height: 1.65;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.4rem;
 }
 .nota .nota__assinatura {
   font-family: var(--ui);
   font-style: normal;
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--terra);
-  margin-top: 2rem;
+  margin-top: 1.75rem;
+  margin-bottom: 0;
 }
 
-/* ---------- O estado da árvore (barra + números) ---------- */
+/* ---------- O Estado da Luz (barra + números) ---------- */
 .campanha-caixa {
   max-width: 46rem;
   margin: 0 auto;
   background: #fff;
   border: 1px solid rgba(43,33,24,0.08);
+  border-top: 4px solid var(--luz);
   border-radius: 16px;
-  padding: 2.25rem 2rem;
+  padding: 2.5rem 2.25rem;
   box-shadow: 0 14px 36px rgba(22,33,62,0.08);
 }
 .campanha-barra-grande {
@@ -75,20 +102,22 @@
   background: linear-gradient(90deg, var(--terra), var(--luz));
   border-radius: 999px;
   transition: width 1.2s ease;
+  box-shadow: 0 0 12px rgba(217,149,48,0.35);
 }
 .numeros {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   gap: 1rem;
-  margin-top: 1.75rem;
+  margin-top: 1.9rem;
   text-align: center;
 }
 .numero__valor {
   display: block;
   font-family: var(--titulos);
   font-weight: 600;
-  font-size: 1.55rem;
-  color: var(--noite);
+  font-size: 1.7rem;
+  color: var(--luz);
+  text-shadow: 0 1px 0 rgba(43,33,24,0.1);
 }
 .numero__rotulo {
   display: block;
@@ -97,25 +126,46 @@
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: rgba(43,33,24,0.55);
-  margin-top: 0.2rem;
+  margin-top: 0.25rem;
 }
 .campanha-nota-rodape {
   text-align: center;
   font-family: var(--ui);
   font-size: 0.8rem;
   color: rgba(43,33,24,0.55);
-  margin-top: 1.4rem;
+  margin-top: 1.5rem;
+  font-style: italic;
 }
 
-/* ---------- Níveis de apoio ---------- */
-.nivel__preco {
-  display: block;
-  font-family: var(--titulos);
+/* ---------- Selos de estado (O Caminho) ---------- */
+.nivel__estado {
+  display: inline-block;
+  font-family: var(--ui);
+  font-size: 0.72rem;
   font-weight: 600;
-  font-size: 1.7rem;
-  color: var(--luz);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  padding: 0.4rem 1.1rem;
   margin: 0.5rem 0 0.75rem;
 }
+.nivel__estado--concluida {
+  background: rgba(95,127,53,0.12);
+  color: var(--palha-verde);
+  border: 1px solid rgba(95,127,53,0.3);
+}
+.nivel__estado--proximo {
+  background: rgba(217,149,48,0.12);
+  color: var(--terra);
+  border: 1px solid rgba(217,149,48,0.35);
+}
+.nivel__estado--horizonte {
+  background: rgba(22,33,62,0.06);
+  color: var(--noite);
+  border: 1px solid rgba(22,33,62,0.12);
+}
+
+/* ---------- As etapas (O Caminho) ---------- */
 .nivel ul {
   list-style: none;
   text-align: left;
@@ -132,7 +182,7 @@
   content: "❧";
   position: absolute;
   left: 0;
-  color: var(--palha-verde);
+  color: var(--luz);
 }
 
 /* ---------- Formas de pagamento ---------- */
@@ -140,21 +190,27 @@
   display: grid;
   gap: 1.25rem;
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-  max-width: rem;
+  max-width: 52rem;
   margin-inline: auto;
 }
 .pagamento {
   background: #fff;
   border: 1px solid rgba(43,33,24,0.08);
   border-radius: 14px;
-  padding: 1.6rem 1.4rem;
+  padding: 1.75rem 1.4rem;
   text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
-.pagamento__icone { font-size: 1.8rem; }
+.pagamento:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(22,33,62,0.1);
+  border-color: rgba(217,149,48,0.3);
+}
+.pagamento__icone { font-size: 1.9rem; }
 .pagamento h3 {
   font-family: var(--titulos);
   font-size: 1.2rem;
-  margin: 0.5rem 0 0.4rem;
+  margin: 0.6rem 0 0.4rem;
 }
 .pagamento p { font-size: 0.92rem; color: rgba(43,33,24,0.75); }
 .pagamento .dados-pagamento {
@@ -174,11 +230,24 @@
 .comprovativo {
   max-width: 44rem;
   margin: 0 auto;
-  background: var(--noite);
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(217,149,48,0.15), transparent 70%),
+    var(--noite);
   color: var(--madrugada);
   border-radius: 16px;
-  padding: 2.25rem 2rem;
+  padding: 2.5rem 2rem;
   text-align: center;
+  position: relative;
+}
+.comprovativo::before {
+  content: "✦";
+  position: absolute;
+  top: 1.1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.1rem;
+  color: var(--luz);
+  opacity: 0.7;
 }
 .comprovativo p { max-width: 34rem; margin-inline: auto; }
 .comprovativo a {
@@ -189,24 +258,30 @@
 .comprovativo a:hover { text-decoration: underline; }
 
 /* ---------- Transparência ---------- */
-.transparencia {
-  list-style: none;
-  max-width: 40rem;
-  margin-inline: auto;
+.transparencia-nota {
+  max-width: 38rem;
+  margin: 0 auto;
+  text-align: center;
+  background: #fff;
+  border: 1px solid rgba(43,33,24,0.08);
+  border-top: 4px solid var(--palha-verde);
+  border-radius: 16px;
+  padding: 2.25rem 2rem;
+  box-shadow: 0 14px 36px rgba(22,33,62,0.06);
 }
-.transparencia li {
-  display: flex;
-  justify-content: space-between;
-  gap: 1.5rem;
-  padding: 0.85rem 0;
-  border-bottom: 1px solid rgba(43,33,24,0.08);
+.transparencia-nota p {
+  font-family: var(--titulos);
+  font-style: italic;
+  font-size: clamp(1.05rem, 2.2vw, 1.2rem);
+  line-height: 1.65;
+  margin-bottom: 1.25rem;
 }
-.transparencia li:last-child { border-bottom: none; }
-.transparencia .pct {
+.transparencia-nota p:last-child {
   font-family: var(--ui);
-  font-weight: 600;
-  color: var(--terra);
-  white-space: nowrap;
+  font-style: normal;
+  font-size: 0.85rem;
+  color: rgba(43,33,24,0.65);
+  margin-bottom: 0;
 }
 
 /* ---------- FAQ ---------- */
@@ -218,7 +293,10 @@
   margin-bottom: 1rem;
   max-width: 46rem;
   margin-inline: auto;
+  transition: border-color 0.25s ease;
 }
+.faq-item:hover { border-color: rgba(217,149,48,0.3); }
+.faq-item[open] { border-color: rgba(217,149,48,0.45); }
 .faq-item summary {
   cursor: pointer;
   list-style: none;
@@ -233,10 +311,8 @@
 
 /* ============================================================
    A Página de Apoiantes — o santuário das luzes
-   Cada nível é um altar; cada nome, uma estrela.
    ============================================================ */
 
-/* ---------- A grelha geral ---------- */
 .apoiantes-grid {
   max-width: 42rem;
   margin: 0 auto;
@@ -244,7 +320,6 @@
   gap: 1.5rem;
 }
 
-/* ---------- Cada nível (o altar) ---------- */
 .apoiantes-nivel {
   background: #fff;
   border: 1px solid rgba(43,33,24,0.08);
@@ -254,8 +329,6 @@
   overflow: hidden;
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
-
-/* O brilho suave no topo do cartão — a luz a nascer */
 .apoiantes-nivel::before {
   content: "";
   position: absolute;
@@ -264,8 +337,6 @@
   background: linear-gradient(90deg, transparent, rgba(217,149,48,0.55), transparent);
   opacity: 0.5;
 }
-
-/* Os dois níveis superiores ganham a moldura dourada */
 .apoiantes-nivel--luz-viva,
 .apoiantes-nivel--pedra {
   border-color: rgba(217,149,48,0.35);
@@ -273,38 +344,28 @@
     radial-gradient(ellipse 70% 50% at 50% 0%, rgba(217,149,48,0.07), transparent 70%),
     #fff;
 }
-
-.apoiantes-nivel--luz-viva {
-  border-color: rgba(217,149,48,0.5);
-}
-
+.apoiantes-nivel--luz-viva { border-color: rgba(217,149,48,0.5); }
 .apoiantes-nivel--luz-viva::before {
   background: linear-gradient(90deg, transparent, var(--luz), transparent);
   opacity: 0.8;
   height: 4px;
 }
 
-/* ---------- O cabeçalho do nível ---------- */
 .apoiantes-nivel__cabeca {
   display: flex;
   align-items: center;
   gap: 0.85rem;
   margin-bottom: 1.1rem;
 }
-
 .apoiantes-nivel__cabeca .simbolo-svg {
-  width: 1.7rem;
-  height: 1.7rem;
-  flex: none;
+  width: 1.7rem; height: 1.7rem; flex: none;
 }
-
 .apoiantes-nivel__cabeca h3 {
   font-family: var(--titulos);
   font-size: 1.35rem;
   font-weight: 600;
   line-height: 1.2;
 }
-
 .apoiantes-nivel__cabeca .contagem {
   font-family: var(--ui);
   font-size: 0.72rem;
@@ -317,14 +378,12 @@
   padding: 0.25rem 0.75rem;
 }
 
-/* ---------- Os nomes (as estrelas) ---------- */
 .apoiantes-nomes {
   display: flex;
   flex-wrap: wrap;
   gap: 0.55rem 1.4rem;
   list-style: none;
 }
-
 .apoiantes-nomes li {
   font-family: var(--titulos);
   font-size: 1.12rem;
@@ -334,8 +393,6 @@
   align-items: baseline;
   gap: 0.4rem;
 }
-
-/* O ✦ antes de cada nome — cada pessoa é uma pequena estrela */
 .apoiantes-nomes li:not(.apoiantes-vazio)::before {
   content: "✦";
   font-size: 0.55em;
@@ -345,7 +402,6 @@
   top: -0.25em;
 }
 
-/* ---------- O estado vazio (o assento à espera) ---------- */
 .apoiantes-vazio {
   font-style: italic;
   color: rgba(43,33,24,0.5);
@@ -356,33 +412,30 @@
   width: 100%;
   background: rgba(43,33,24,0.02);
 }
+.apoiantes-vazio::before { display: none; }
 
-.apoiantes-vazio::before { display: none; }  /* sem ✦ nos vazios */
-
-/* ---------- O convite ---------- */
 .apoiantes-convite {
   max-width: 38rem;
   margin: 2rem auto 0;
   text-align: center;
-  background: var(--noite);
+  background:
+    radial-gradient(ellipse 80% 50% at 50% 0%, rgba(217,149,48,0.12), transparent 70%),
+    var(--noite);
   color: var(--madrugada);
   border-radius: 16px;
   padding: 2.5rem 2rem;
 }
-
 .apoiantes-convite h3 {
   font-family: var(--titulos);
   font-size: 1.45rem;
   margin-bottom: 0.75rem;
   color: #fff;
 }
-
 .apoiantes-convite p {
   font-size: 0.95rem;
   color: rgba(246,240,225,0.8);
   margin-bottom: 1.25rem;
 }
-
 .apoiantes-convite p:last-child {
   margin-bottom: 0;
   font-size: 0.8rem;
@@ -403,8 +456,12 @@
 .edicao-nav a { color: var(--terra); text-decoration: none; }
 .edicao-nav a:hover { text-decoration: underline; }
 
-/* ---------- Telemóvel: nomes em duas colunas ---------- */
+/* ---------- Telemóvel ---------- */
 @media (max-width: 600px) {
+  .campanha-caixa { padding: 1.75rem 1.5rem; }
+  .nota { padding: 2.25rem 1.5rem 1.75rem; }
+  .pagamento { padding: 1.4rem 1.2rem; }
+  .comprovativo { padding: 2.25rem 1.5rem; }
   .apoiantes-nivel { padding: 1.25rem 1.25rem 1.1rem; }
   .apoiantes-nomes { gap: 0.5rem 1rem; }
   .apoiantes-nivel__cabeca .contagem { font-size: 0.65rem; }

@@ -8,8 +8,8 @@
    ============================================================ */
 
 var ALVO       = 100;   // EDITA: quantas pessoas justificam a edicao piloto
-var ACESAS     = 0;     // EDITA: quantas pessoas já responderam
-var GUARDIOES  = 0;     // (mantém para a home usar o mesmo campo)
+var ACESAS     = 5000;     // EDITA: quantas pessoas já responderam
+var GUARDIOES  = 1;     // (mantém para a home usar o mesmo campo)
 
 (function () {
   "use strict";
