@@ -8,7 +8,7 @@
    ============================================================ */
 
 var ALVO       = 100;   // EDITA: quantas pessoas justificam a edicao piloto
-var ACESAS     = 5000;     // EDITA: quantas pessoas já responderam
+var ANGARIADO = 5000;     // EDITA: quantas pessoas já responderam
 var GUARDIOES  = 1;     // (mantém para a home usar o mesmo campo)
 
 (function () {
