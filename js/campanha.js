@@ -2,22 +2,29 @@
    MAGUEZI — O Estado da Luz
    ------------------------------------------------------------
    OS NÚMEROS VIVEM AQUI. É o único sítio a actualizar.
-   A cada apoio recebido, muda as duas linhas abaixo.
 
-   Sem meta, sem percentagem — apenas o que arde:
-   quantas pessoas, e quanto a comunidade escolheu dar.
+   A barra conta guardiões — pessoas, escolas, instituições.
+   Cada luz é uma luz, seja qual for a sua fonte.
    ============================================================ */
 
-var GUARDIOES  = 0;     // EDITA: número de pessoas que já apoiaram
-var ANGARIADO = 0;      // EDITA: total angariado, em meticais
+var ALVO       = 200;   // EDITA: quantos guardiões justificam a Edição Piloto
+var GUARDIOES  = 0;     // EDITA: total (pessoas + escolas + instituições)
+var ANGARIADO = 0;      // EDITA: total em MT (transparência)
 
 (function () {
   "use strict";
 
   function mt(n) { return n.toLocaleString("pt-PT") + " MT"; }
 
+  var pct = ALVO > 0 ? Math.min(100, Math.round((GUARDIOES / ALVO) * 100)) : 0;
+
+  var barra = document.getElementById("barra-campanha");
+  if (barra) barra.style.width = pct + "%";
+
   var slots = {
     "campanha-guardioes": String(GUARDIOES),
+    "campanha-alvo":      String(ALVO),
+    "campanha-pct":       pct + "%",
     "campanha-angariado": mt(ANGARIADO)
   };
 
