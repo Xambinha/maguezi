@@ -570,6 +570,150 @@
   text-align: center;
 }
 
+
+/* ============================================================
+   As Construções da Cidade de Luz — a linha de marcos
+   ============================================================ */
+
+.construcoes-caixa {
+  max-width: 46rem;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid rgba(43,33,24,0.08);
+  border-top: 4px solid var(--luz);
+  border-radius: 16px;
+  padding: 2.5rem 2rem 2rem;
+  box-shadow: 0 14px 36px rgba(22,33,62,0.08);
+}
+
+/* ---------- A linha horizontal de marcos ---------- */
+.linha-construcoes {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0;
+  margin-bottom: 1.75rem;
+}
+
+/* Cada marco (círculo + nome) */
+.construcao {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 5rem;
+}
+
+.construcao__luz {
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 1.3rem;
+  background: rgba(43,33,24,0.05);
+  border: 2px solid rgba(43,33,24,0.15);
+  color: rgba(43,33,24,0.3);
+  transition: all 0.4s ease;
+}
+
+.construcao__nome {
+  font-family: var(--ui);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(43,33,24,0.45);
+  text-align: center;
+  max-width: 5.5rem;
+  line-height: 1.3;
+}
+
+/* O marco ACESO: dourado, a brilhar */
+.construcao--acesa .construcao__luz {
+  background:
+    radial-gradient(circle at 35% 30%, #F0B85A, var(--luz));
+  border-color: var(--luz);
+  box-shadow:
+    0 0 16px rgba(217,149,48,0.45),
+    0 0 40px rgba(217,149,48,0.15);
+  color: var(--noite-funda);
+}
+
+.construcao--acesa .construcao__nome {
+  color: var(--terra);
+  font-weight: 600;
+}
+
+/* O traço entre marcos */
+.construcao-traco {
+  flex: 1;
+  min-width: 1.5rem;
+  max-width: 3.5rem;
+  height: 2px;
+  margin-top: 1.55rem;    /* alinha com o centro do círculo */
+  background: rgba(43,33,24,0.12);
+  border-radius: 999px;
+}
+
+.construcao-traco--aceso {
+  background: linear-gradient(90deg, var(--luz), rgba(217,149,48,0.5));
+  box-shadow: 0 0 6px rgba(217,149,48,0.3);
+}
+
+/* ---------- A barra por baixo da linha ---------- */
+.construcoes-barra {
+  height: 8px;
+  background: rgba(43,33,24,0.08);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 1.75rem;
+}
+
+.construcoes-barra > div {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--terra), var(--luz));
+  border-radius: 999px;
+  transition: width 1.2s ease;
+  box-shadow: 0 0 10px rgba(217,149,48,0.3);
+}
+
+/* ---------- Os números ---------- */
+.construcoes-numeros {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 1rem;
+  text-align: center;
+}
+
+.construcoes-numeros .numero__valor {
+  display: block;
+  font-family: var(--titulos);
+  font-weight: 600;
+  font-size: 1.45rem;
+  color: var(--luz);
+}
+
+.construcoes-numeros .numero__rotulo {
+  display: block;
+  font-family: var(--ui);
+  font-size: 0.68rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(43,33,24,0.55);
+  margin-top: 0.2rem;
+}
+
+/* ---------- Telemóvel: marcos em duas linhas ---------- */
+@media (max-width: 600px) {
+  .construcoes-caixa { padding: 1.75rem 1.25rem 1.5rem; }
+  .construcao { min-width: 4rem; }
+  .construcao__luz { width: 2.6rem; height: 2.6rem; font-size: 1.1rem; }
+  .construcao__nome { font-size: 0.6rem; max-width: 4rem; }
+  .construcao-traco { min-width: 0.75rem; margin-top: 1.25rem; }
+}
+
 /* ---------- Telemóvel: os marcos podem quebrar em 2 linhas ---------- */
 @media (max-width: 600px) {
   .construcao { width: 4.5rem; }
